@@ -10,6 +10,9 @@ wget https://github.com/chhylp123/hifiasm/releases/download/v0.7/chr11-2M.fa.gz
 ./hifiasm -o test -t4 -f0 chr11-2M.fa.gz 2> test.log
 awk '/^S/{print ">"$2;print $3}' test.bp.p_ctg.gfa > test.p_ctg.fa  # get primary contigs in FASTA
 
+# Run directly on PacBio unaligned bam files
+hifiasm -o HG002.asm -t32 HG002.hifi_reads.bam
+
 # Assemble inbred/homozygous genomes (-l0 disables duplication purging)
 hifiasm -o CHM13.asm -t32 -l0 CHM13-HiFi.fa.gz 2> CHM13.asm.log
 # Assemble heterozygous genomes with built-in duplication purging
