@@ -95,7 +95,10 @@ A typical hifiasm command line looks like:
 hifiasm -o NA12878.asm -t 32 NA12878.fq.gz
 ```
 where `NA12878.fq.gz` provides the input reads, `-t` sets the number of CPUs in
-use and `-o` specifies the prefix of output files. For this example, the
+use and `-o` specifies the prefix of output files. The primary HiFi input may
+also be provided as native unaligned PacBio BAM. FASTA/FASTQ inputs may be plain
+text or gzip-compressed. For BAM input, hifiasm accepts unaligned records
+directly without FASTQ conversion. For this example, the
 primary contigs are written to `NA12878.asm.bp.p_ctg.gfa`. 
 Since v0.15, hifiasm also produces two sets of
 partially phased contigs at `NA12878.asm.bp.hap?.p_ctg.gfa`. This pair of files
