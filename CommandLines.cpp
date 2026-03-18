@@ -238,7 +238,7 @@ void Print_H(hifiasm_opt_t* asm_opt)
 
 
     fprintf(stderr, "Example: ./hifiasm -o NA12878.asm -t 32 NA12878.fq.gz\n");
-    fprintf(stderr, "         ./hifiasm -o NA12878.asm -t 32 NA12878.subreads.unaligned.bam\n");
+    fprintf(stderr, "         ./hifiasm -o NA12878.asm -t 32 NA12878.hifi_reads.bam\n");
     fprintf(stderr, "See `https://hifiasm.readthedocs.io/en/latest/' or `man ./hifiasm.1' for complete documentation.\n");
 }
 
