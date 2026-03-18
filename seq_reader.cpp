@@ -63,13 +63,12 @@ static int sr_prepare_bam(ha_seq_reader_t *r)
 		sr_set_error(r, "input is not a BAM file");
 		return 0;
 	}
-	if (!sr_gzread_exact(r, hdr, 8)) {
-		sr_set_error(r, "failed to read BAM header");
+	if (!sr_gzread_exact(r, hdr, 4)) {
+		sr_set_error(r, "failed to read BAM header length");
 		return 0;
 	}
 	l_text = sr_le_i32(hdr);
-	n_ref = sr_le_i32(hdr + 4);
-	if (l_text < 0 || n_ref < 0) {
+	if (l_text < 0) {
 		sr_set_error(r, "corrupted BAM header");
 		return 0;
 	}
@@ -87,6 +86,15 @@ static int sr_prepare_bam(ha_seq_reader_t *r)
 			sr_set_error(r, "failed to read BAM text header");
 			return 0;
 		}
+	}
+	if (!sr_gzread_exact(r, hdr, 4)) {
+		sr_set_error(r, "failed to read BAM reference count");
+		return 0;
+	}
+	n_ref = sr_le_i32(hdr);
+	if (n_ref < 0) {
+		sr_set_error(r, "corrupted BAM reference count");
+		return 0;
 	}
 	for (i = 0; i < n_ref; ++i) {
 		int32_t l_name;
