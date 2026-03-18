@@ -96,8 +96,10 @@ Its latest release could support the telomere-to-telomere assembly by utilizing 
 A typical hifiasm command line looks like:
 ```sh
 hifiasm -o NA12878.asm -t 32 NA12878.fq.gz
+# or
+hifiasm -o NA12878.asm -t 32 NA12878.hifi_reads.bam
 ```
-where `NA12878.fq.gz` provides the input reads, `-t` sets the number of CPUs in
+where `NA12878.fq.gz` or `NA12878.hifi_reads.bam` provides the input reads, `-t` sets the number of CPUs in
 use and `-o` specifies the prefix of output files. The primary HiFi input may
 also be provided as native unaligned PacBio BAM. FASTA/FASTQ inputs may be plain
 text or gzip-compressed. For BAM input, hifiasm accepts unaligned records
